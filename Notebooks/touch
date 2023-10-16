@@ -1,0 +1,483 @@
+    1  ls -al ~/.ssh
+    2  ls -al ~/.ssh
+    3  ssh-keygen -t ed25519-sk -C "markshumka@hotmail.com"
+    4  [200~ssh-keygen -t ed25519 -C "markshumka@hotmail.com"
+    5  ssh-keygen -t ed25519 -C "markshumka@hotmail.com"
+    6  # start the ssh-agent in the background
+    7  $ eval "$(ssh-agent -s)"
+    8  > Agent pid 59566
+    9  ls -al ~/.ssh
+   10  $ eval "$(ssh-agent -s)"
+   11  > Agent pid 59566
+   12  ssh-add ~/.ssh/id_ed25519
+   13  ls -al ~/.ssh
+   14  # start the ssh-agent in the background
+   15  $ eval "$(ssh-agent -s)"
+   16  > Agent pid 59566
+   17  ~/.profile
+   18  ~/.bashrc
+   19  ls -al ~/.ssh
+   20  $ eval "$(ssh-agent -s)"
+   21  > Agent pid 59566
+   22  eval "$(ssh-agent -s)"
+   23  > Agent pid 59566
+   24  eval "$(ssh-agent -s)"
+   25  ssh-add ~/.ssh/id_ed25519
+   26  clip < ~/.ssh/id_ed25519.pub
+   27  ssh -T git@github.com
+   28  ls -al ~/.ssh
+   29  eval "$(ssh-agent -s)"
+   30  ssh -T git@github.com
+   31  pwd
+   32  whoami
+   33  cd /c/Users/User/desktop
+   34  ls
+   35  cd /users
+   36  cd /Users
+   37  cd /c/Users
+   38  cd ~
+   39  cd /c/Users/User/Desktop/
+   40  wc --help
+   41  cd /newfolder
+   42  ls
+   43  cd /c/Users/User/Desktop/newfolder/
+   44  touch my_data.csv
+   45  ls
+   46  touch your_data.csv
+   47  ls
+   48  curl -o my_data.csv "https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv?accessType=DOWNLOAD"
+   49  ls
+   50  wc -l my_data.csv
+   51  ls
+   52  touch test.py
+   53  ls
+   54  ls *.csv
+   55  ls my*.csv
+   56  ls *data.csv
+   57  cd ..
+   58  mkdir anotherfolder
+   59  ls
+   60  cd /newfolder
+   61  cd /c/Users/User/Desktop/newfolder/
+   62  cp my_data.csv my_copy.csv
+   63  ls
+   64  wc -l my_copy.csv
+   65  cp my_data.csv ../my_copy2.csv
+   66  rm ../my_copy2.csv
+   67  ls ..
+   68  head -3 my_data.csv
+   69  head -3 my_data.csv
+   70  tail -3 my_data.csv
+   71  help --ls
+   72  ls --help
+   73  ls -s
+   74  ls -s | head -10
+   75  less my_data.csv
+   76  less -s my_data.csv
+   77  less --help
+   78  tail -100 my_data.csv
+   79  tail -127 my_data.csv | head -3 my_data.csv
+   80  head -3 my_data.csv
+   81  tail -127 | head -3 my_data.csv
+   82  head -3 my_data.csv | tail -127 my_data.csv
+   83  head -n 113 my_data.csv | tail -n +110
+   84  head -113 my_data.csv | tail -3
+   85  head -113 | tail -4
+   86  head -113 my_data.csv | tail -4
+   87  tail -127 my_data.csv | head -4
+   88  tail -128 my_data.csv | head -4
+   89  wc my_data.csv > length.txt
+   90  ls
+   91  less length.txt
+   92  cat length.txt
+   93  wc my_data.csv >> length.txt
+   94  cat length.txt
+   95  cut -d , -f 2 my_data.csv
+   96  cut --help
+   97  cut -d , -f 2 my_data.csv
+   98  head -2 my_data.csv
+   99  cut -d , -f 2 my_data.csv
+  100  cut -d , -f 2 my_data.csv > pop
+  101  ls
+  102  head -3 pop
+  103  cut -d , -f 2 my_data.csv > pop.csv
+  104  ls
+  105  rm pop
+  106  ls
+  107  sort pop.csv
+  108  sort -n pop.csv
+  109  cut -d , -f 2 my_data.csv | tail -n +2 > pop.csv
+  110  sort -n pop.csv
+  111  cut -d , -f 2 my_data.csv | tail -n +2 | sort -n > pop.csv
+  112  less pop.csv
+  113  for file in *.csv; do wc -l $file; done
+  114  wc --help
+  115  ls
+  116  cd c/Users/User/Desktop/newfolder/mydata
+  117  ls
+  118  cd c/Users/User/Desktop/newfolder/mydata/
+  119  unzip mydata.zip
+  120  ls
+  121  unzip mydata.zip
+  122  for file in mydata*; do wc -l $file; > output.txt; done
+  123  for file in data*; do wc -l $file; > output.txt; done
+  124  ls
+  125  cd ..
+  126  cd /newfolder
+  127  cd /Desktop/newfolder
+  128  cd newfolder
+  129  cd mydata
+  130  for file in data*; do wc -l $file; > output.txt; done
+  131  ls
+  132  less output.txt
+  133  for file in *.csv; do wc -l $file >> length.txt; done
+  134  cd ..
+  135  cd mydata
+  136  for file in *.csv; do wc -l $file; done > lenghts.txt
+  137  ls
+  138  less lenghts.txt
+  139  cat lenghts.txt
+  140  cd ..
+  141  touch words.sh
+  142  ls
+  143  bash words.sh
+  144  bash words.sh
+  145  nano words.sh
+  146  nana words.sh
+  147  nano words.sh
+  148  nano words.sh
+  149  ls
+  150  touch words.sh
+  151  nano words.sh
+  152  nano words.sh
+  153  code words.sh
+  154  ls
+  155  nano words.sh
+  156  bash words.sh my_data.csv
+  157  nano words.sh
+  158  bash words.sh my_copy.csv
+  159  bash words.sh mydata/data-52.csv
+  160  ls
+  161  touch words.sh
+  162  touch words2.sh
+  163  bash words.sh
+  164  bash words2.sh
+  165  bash words2.sh
+  166  bash words2.sh my_data.csv
+  167  bash words2.sh my_copy.csv
+  168  bash words2.sh your_data.csv
+  169  nano words2.sh
+  170  bash words.sh my_data.csv
+  171  nano words.sh
+  172  bash words.sh my_data.csv
+  173  bash words2.sh my_data.csv
+  174  bash words.sh my_data.csv
+  175  bash words.sh mydata/data-77
+  176  bash words.sh mydata/data-77.csv
+  177  bash words.sh my_data.csv
+  178  ./words.sh
+  179  touch mypythonfile.py
+  180  ls *.py
+  181  nano mypythonfile.py
+  182  a = 'BrainStation'
+  183  for i in a:;     print(i)
+  184  python mypythonfile.py
+  185  cat mypythonfile.py
+  186  less mypythonfile.py
+  187  pwd
+  188  ls
+  189  python mypythonfile.py DataSci
+  190  python mypythonfile.py DataSci
+  191  python mypythonfile.py DataSci
+  192  python mypythonfile.py DataSci
+  193  python mypythonfile.py Mark Shumka
+  194  python mypythonfile.py "Mark Shumka"
+  195  python mypythonfile.py Lucia
+  196  python mypythonfile.py
+  197  nano mypythonfile.py
+  198  history
+  199  history | grep conda
+  200  history | grep python
+  201  history | grep pwd
+  202  history | grep bash
+  203  curl -o my_data.csv "https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv?accessType=DOWNLOAD"
+  204  pwd
+  205  cd /c/Users/User/Desktop/newfolder/
+  206  pwd
+  207  curl -o my_data.csv "https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv?accessType=DOWNLOAD"
+  208  whoami
+  209  history | grep help
+  210  pwd --help
+  211  grep 111 my_data.csv
+  212  ls | grep my_data.csv
+  213  grep 1 my_data.csv | less
+  214  grep 111 my_data.csv
+  215  grep -w 111 my_data.csv
+  216  grep -w 111 my_data.csv | wc -l
+  217  grep 111 my-data.csv | wc -1
+  218  grep 111 my_data.csv | wc -l
+  219  clear
+  220  grep -w 111 my_data.csv | wc -l
+  221  wc --help
+  222  grep -w 111 my_data.csv
+  223  head my_data.csv
+  224  -w --help
+  225  --help
+  226  grep -w 111 my_data.csv
+  227  grep -v -w 111 my_data.csv
+  228  grep -v -w my_data.csv | wc -l
+  229  grep -v -w 111 my_data.csv | wc -l
+  230  head contactdata.csv
+  231  history | grep cut
+  232  help --cut
+  233  cut --help
+  234  history grep cut
+  235  history
+  236  cat contactdata.csv
+  237  less contactdata.csv
+  238  head contactdata.csv
+  239  history | grep cut
+  240  awk -F ',' '{print NF; exit}' contactdata.csv
+  241  history | grep cut
+  242  cut -d , -f 2 contactdata.csv
+  243  cut -d ',' -f 2 contactdata.csv | grep "pattern"
+  244  cut -d ',' -f 2 contactdata.csv | grep -E ".@."
+  245  cut -d ',' -f 2 contactdata.csv | grep -E ".@." > email.csv
+  246  cut -d ',' -f 2 contactdata.csv | grep -E "\([0-9]{3}\) [0-9]{3}-[0-9]{4}"
+  247  cut -d ',' -f 2 contactdata.csv | grep -E "\([0-9]{3}\) [0-9]{3}-[0-9]{4}" > num.csv
+  248  cut -d ',' -f 2 contactdata.csv | grep -E ".(."
+  249  cut -d ',' -f 2 contactdata.csv | grep -E ".\(\."
+  250  cut -d ',' -f 2 contactdata.csv | grep -E "YYYY-MM-DD HH:mm:ss"
+  251  cut -d ',' -f 2 contactdata.csv | grep -E "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+  252  cut -d ',' -f 2 contactdata.csv | grep -E "\([0-9]{3}\) [0-9]{3}-[0-9]{4}"
+  253  cut -d ',' -f 2 contactdata.csv | grep -E "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} (AM|PM)"
+  254  cut -d ',' -f 2 contactdata.csv | grep "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} (AM|PM)" > datetime.csv
+  255  cut -d ',' -f 2 contactdata.csv | grep -E "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} (AM|PM)"
+  256  cut -d ',' -f 2 contactdata.csv | grep -E "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} (AM|PM)" > datetime.csv
+  257  cut -d ',' 'f 2 contactdata.csv | grep -E "\([0-9]{3}\) [0-9]{3}-[0-9]{4}"~
+  258  cut -d ',' -f 2 contactdata.csv | grep -E "\([0-9]{3}\) [0-9]{3}-[0-9]{4}"
+  259  cut -d ',' -f 2 contactdata.csv | grep -E "\([0-9]{3}\)-[0-9]{3}-[0-9]{4}"
+  260  cut -d ',' -f 2 contactdata.csv | grep -E "\([0-9]{3}\)-[0-9]{3}-[0-9]{4}" > num.csv
+  261  cut -d , -f 2 contactdata.csv | grep -E '\w+\@\w+\.com'
+  262  touch scriptingInClass.sh
+  263  nano.sh
+  264  nana scriptingInClass.sh
+  265  nano scriptingInClass.sh
+  266  bash scriptingInClass.sh contactdata.csv phone_numbers_from_script.csv emails_from_script.csv datetimes_from_script.csv
+  267  head phone_numbers_from_script.csv
+  268  head emails_from_script.csv
+  269  head datetimes_from_script.csv
+  270  wc -l emails_from_script.csv
+  271  git config --global user.name "Mark Shumka"
+  272  git config --global user.email "markshumka@hotmail.com"
+  273  git config --global init.defaultBranch "main"
+  274  git config --global color.ui "auto"
+  275  git config --global core.autocrlf true
+  276  git status
+  277  cd git
+  278  git --version
+  279  ls -al ~/.ssh
+  280  ssh -T git@github.com
+  281  ..
+  282  cd
+  283  git config --global user.name "Mark Shumka"
+  284  git config --global user.email "markshumka@hotmail.com"
+  285  git config --global init.defaultBranch "main"
+  286  git config --global color.ui "auto"
+  287  git config --global core.autocrlf true
+  288  mkdir mygitrepo
+  289  cd mygitrepo
+  290  git init
+  291  git status
+  292  def helloworld():
+  293  $ ls -a
+  294  ls -a
+  295  git status
+  296  git add helloworld.py
+  297  touch helloworld.py
+  298  nano helloworld.py
+  299  git add helloworld.py
+  300  git commit -m 'initial commit of helloworld.py'
+  301  git log
+  302  nano helloworld.py
+  303  git status
+  304  git diff
+  305  git diff HEAD helloworld.py
+  306  git log
+  307  git checkout 921e9 helloworld.py
+  308  git diff 921e9 helloworld.py
+  309  git log
+  310  git status
+  311  git branch
+  312  git log
+  313  clone https://github.com/markshumka/Project-Canucklehead.git
+  314  git log
+  315  nano helloworld.py
+  316  git commit
+  317  git log
+  318  nano helloworld.py
+  319  git diff HEAD helloworld.py
+  320  git diff HEAD~1 helloworld.py
+  321  ..
+  322  cd ..
+  323  cd /c/users
+  324  cd /c/Users/User/Mark\ Shumka\ capstone\ folder/
+  325  cd ..
+  326  cd /c/Users/User/MarkShumkaCapstoneFolder/
+  327  mkdir capstonegitrepo
+  328  cd capstonegitrepo
+  329  git init
+  330  git status
+  331  ls -a
+  332  ls
+  333  git status
+  334  git add .
+  335  git commit -m "Initial commit"
+  336  clear
+  337  git status
+  338  git add MoneyPuckDataDictionaryForPlayers.csv
+  339  git status
+  340  git commit -m "First commit"
+  341  git push
+  342  git remote add origin https://github.com/markshumka/Project-Canucklehead.git
+  343  git branch -M main
+  344  git push -u origin main
+  345  git push
+  346  git status
+  347  git add game-statistics-1.xlsx
+  348  git add README.md
+  349  git commit -m "Add two files, including README.md"
+  350  git push
+  351  git pull origin main
+  352  cd /c/Users/User/MarkShumkaCapstoneFolder/
+  353  cd /c/Users/User/MarkShumkaCapstoneFolder/capstonegitrepo/
+  354  git pull origin main
+  355  git push origin main
+  356  git status
+  357  git pull origin main
+  358  git push origin main
+  359  git push
+  360  git add -u  # Stage the deleted file
+  361  git commit -m "Delete game-statistics-1.xlsx"
+  362  git push
+  363  git lfs install
+  364  git lfs track "*.xlsx"
+  365  git add .gitattributes
+  366  git commit -m "Configure Git LFS for *.xlsx files"
+  367  git push
+  368  git add -u  # Stage the deleted file
+  369  git commit -m "Delete game-statistics-1.xlsx"
+  370  git push
+  371  cd ..
+  372  cd ..
+  373  cd /c/Users/User/mygitrepo
+  374  cd ..
+  375  mkdir newgitrepo
+  376  cd newgitrep
+  377  cd newgitrepo
+  378  git init
+  379  git status
+  380  ls -a
+  381  git status
+  382  git add helloworld.py
+  383  git status
+  384  git commit -m 'initial commit of helloworld.py'
+  385  git log
+  386  .gitignore
+  387  git gitignore
+  388  touch .gitignore
+  389  git status
+  390  git add .gitignore
+  391  git status
+  392  git diff
+  393  git status
+  394  git add helloworld.py
+  395  git status
+  396  git commit -m 'take two'
+  397  git log
+  398  git diff HEAD helloworld.py
+  399  git status
+  400  git diff 0bb6 helloworld.py
+  401  git checkout 0bb6 helloworld.py
+  402  git reset --hard
+  403  git log
+  404  git remote add origin https://github.com/markshumka/Brainstation-test-repo.git
+  405  git branch -M main
+  406  git push -u origin main
+  407  git pull origin main
+  408  $ git clone git@github.com:github.com/user/repo.git
+  409  git clone git@github.com:github.com/user/repo.git
+  410  git clone https://github.com/markshumka/Brainstation-test-repo.git
+  411  git branch newbranch
+  412  checkout newbranch
+  413  git checkout newbranch
+  414  git merge main
+  415  history | grep mkdir
+  416  cd ..
+  417  cd /c/Users/User/MarkShumkaCapstoneFolder/
+  418  mkdir capstonegitrepoMS
+  419  cd capstonegitrepoMS
+  420  git init
+  421  git status
+  422  ls
+  423  ls -a
+  424  history | grep add
+  425  history | grep ls
+  426  cd ..
+  427  ls -a
+  428  /capstonegitrepMS
+  429  cd /c/Users/User/MarkShumkaCapstoneFolder/capstonegitrepoMS/
+  430  touch .gitignore
+  431  ls -a
+  432  git add --all
+  433  git status
+  434  git commit -m "Initial commit of new capstone items"
+  435  git remote add origin https://github.com/markshumka/NHL-Game-Predictor.git
+  436  git branch -M main
+  437  git push -u origin main
+  438  > git status
+  439  git status
+  440  ls -a
+  441  git log
+  442  cd
+  443  cd /c/Users/user/MarkShumkaCapstoneFolder/
+  444  ls -a
+  445  mkdir Docs
+  446  ls -a
+  447  mkdir Models
+  448  mkdir Notebooks
+  449  mkdir References
+  450  cd /c/Users/User/MarkShumkaCapstoneFolder/capstonegitrepoMS
+  451  ls -a
+  452  mkdir Docs
+  453  mkdir Models
+  454  mkdir Notebooks
+  455  mkdir References
+  456  mkdir Reports
+  457  mkdir Streamlit
+  458  ls -a
+  459  mkdir src
+  460  git status
+  461  git add Docs Models Notebooks References Reports Streamlit src
+  462  git commit -m 'Add folders from template'
+  463  git push
+  464  git remote -v
+  465  touch Docs/doc.txt
+  466  git add .
+  467  git commit -m 'Add empty file in Docs folder'
+  468  git push
+  469  touch Models/doc.txt
+  470  touch Notebooks/doc.txt
+  471  touch References/doc.txt
+  472  touch Reports/placeholder.txt
+  473  touch Streamlit/doc.txt
+  474  touch Reports/doc.txt
+  475  touch src/doc.txt
+  476  rm Reports/placeholder.txt
+  477  git rm Reports/placeholder.txt
+  478  git commit -m 'Remove placeholder file'
+  479  git add .
+  480  git commit -m 'Add empty files in all folders'
+  481  git push
+  482  cd Notebooks
+  483  history > touch
