@@ -60,5 +60,12 @@ Modeling will include Logistic Regression and Machine Learning models.
 
 ## Learnings
 This section will be updated as the project progresses, but here are some initial findings from EDA.
-- Home ice advantage
+#### Home ice Advantage
 <img src="src/Home ice.png">
+The home team wins close to 55% of the time. Given that the upper limit of the most successful prediction models is ~62%, there is a narrow window for achieving success of this project!
+
+#### Goals
+<img src="src/Average_goals.png">
+On average, teams score 2.78 goals, with goals totals fairly normally distributed.
+<img src="src/Average_goals_WvL.png">
+Winning teams score 3.75 goals on average, versus 1.80 for losing teams. The average margin of victory is close to two goals.
