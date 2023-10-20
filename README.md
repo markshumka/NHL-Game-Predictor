@@ -29,6 +29,8 @@ I have sourced two datasets to provide the information that I want, and merged t
 
 I was tempted to exclude the second dataset, as the first dataset is more current and contains almost all of the same columns of data, albeit with different names. However, the first dataset does not have a column that states whether the team won or lost, which is the dependent variable I will be attempting to predict. I could conceivably subtract 'goals against' from 'goals for' in the first dataset, and create a binary variable for win or loss based on whether that calculation was positive or negative, but it turns out that the Moneypuck dataset, while at the team level, is the aggregation of individual player stats. This is really only problematic when determining the outcome of games decided in a shootout, as the the team that wins is credited with a winning goal, but no individual player is credited with a goal. Based on that, subtracting 'goals against' from 'goals for' in the Moneypuck dataset sometimes gives a result of 0, which would not allow me to determine the game winner from that dataset alone. As a result, I have included both datasets. I still hope to update all the data through the end of the 2022-23 season.
 
+The initial data dictionary can be found [here]. 
+
 ## Roadmap
 
 ### Data Merging
@@ -38,27 +40,25 @@ Or so I thought. I realized through several iterations that there were subtle di
 
 Despite the challenges, I was able to merge the two datasets, resulting in a single dataset with ~28k rows and 127 columns.
 
-The initial data dictionary can be found [here]. 
-
 ### Data Cleaning
 Cleaning the merged dataset largely consisted of removing columns with duplicate information, along with the rows/seasons that the two datasets did not have in common. There were also some duplicate rows in one of the datasets, which appeared to be the result of human error in creating the dataset originally. I also chose to remove playoff games from the dataset, as it is a commonly-held belief that the regular season is not an accurate predictor of playoff outcome, and vice versa. Finally, I converted all of the important non-numeric columns to numeric, to enable me to run correlation analysis and regression, for example.
 
 ### Exploratory Data Analysis (EDA)
-
+Initial EDA focused on overall average performance of teams along multiple dimensions, including wins and goals scored. I idenfied the variables with the highest positive and negative correlation with wins (not surprisingly, goals scored and goals allowed were at the top of each list). I also looked at some of the differences that were visible when filtering by the categories in the two major categorical variables: win/loss and home/away. For more information, see the [Learnings](#learnings) section below. 
 
 ### Feature Selection / Feature Engineering
-With over 100 independent variables, some of which are built from the same underlying data, it will be crucial to identify and isolate those that prove most important in predicting game outcome. In addition, I have a number hypotheses I would like to test that would involve the creation or addition of other variables.
+With over 100 independent variables, some of which are built from the same underlying data, it will be crucial to identify and isolate those that prove most important in predicting game outcome. This will involve gaining a deeper understanding of the different Advanced Stats in common use, their similarities and differences, and their ability to predict wins and losses. In addition, I have a number hypotheses I would like to test that would involve the creation or addition of other variables.
 - Home teams win more frequently than visiting teams, but does that vary based on length of road trip (number of games) or distance traveled? I could potentially calculate the distance between cities where teams play and include that distance as a variable. Similarly, I could count the number of consecutive away games to see if there is any change in expected outcome depending on number of away games played in a row.
 - It is widely believed that when a team has to play games on back-to-back days, their chance of winning is decreased for the second game. I could calculate the number of days since the last game and analyze whether this is truly a factor.
 - While I have chosen to focus on team stats rather than individual player stats, there is one area where I would consider an exception: goaltenders. The quality of goaltender is likely to have a very high impact on the outcome of the game, in particular whether the team played their starter or their backup. If possible, I will consider adding goaltender stats to the analysis.
 - While I do not want to aggregate individual player statistics, it may be possible to include some kind of team strength factor based on salary cap hit. Each team is limited in how much they can spend on player salaries, with the upper bound being the salary cap, but they do not need to spend to the cap. It may be that teams that spend more have better players, and therefore an advantage. In addition, if I can get salary cap data on a game-by-game basis (a big 'if'), it could help account for situations where a team's start player or players is injured and cannot play, as the salary total for that game would be lower than if the highly-paid player was playing.
 - There are some cases where I would most likely want to calculate a derived value rather than using the values that are in the dataset. For example, I have data on powerplay opportunities and powerplay goals, but I would like those consolidated into a single powerplay percentage value. The same holds for saves vs. goals against, i.e., save percentage. There may be other similar metrics that I want to derive, so I will need to plan for that.
+- While much of this data will be helpful in identifying key drivers of game outcomes, how well that can be used to predict future outcomes is unclear. Forecasting single-game performance based on an average of 10+ years of data seems optimistic. It may make sense to build time series data of the last n games to see if there are short-term trends that help predict outcomes.
 
 ### Modeling
-
 Modeling will include Logistic Regression and Machine Learning models.
 
 ## Learnings
 This section will be updated as the project progresses, but here are some initial findings from EDA.
-
-
+- Home ice advantage
+<img src="src/Home ice.png">
