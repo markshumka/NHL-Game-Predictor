@@ -4,18 +4,13 @@
 
 <img align="center" src="src/slapshot.jpg" title="Slaphshot" alt="Slapshot" width="600" height="400"> 
 
-## Project Overview
+</div>
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+## Project Introduction
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+This project will seek to build a model to effectively predict the outcome of National Hockey League games.
 
 ## Table of Contents
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
 
 - [Motivation](#motivation)
 - [Dataset](#dataset)
@@ -24,7 +19,9 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## Motivation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+As an avid hockey fan, I have always been interested in the factors that are most important in determining the outcome of games. With the recent rise in statistical analysis of hockey players and games via Advanced Statistics, we have access to more useful data than ever. Nevertheless, the randomness and fluidity of hockey makes it notoriously difficult to accurately predict outcomes, with [62% accuracy](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwi39_L8vYOCAxVfODQIHcFnCJoQFnoECA4QAQ&url=https%3A%2F%2Fis.muni.cz%2Fth%2Froec4%2FAnalysis_of_NHL_games_Archive.pdf&usg=AOvVaw130WCcVDzGxZQHy_fbhI9c&opi=89978449) being [commonly held](https://www.researchgate.net/publication/284457066_Predicting_NHL_Match_Outcomes_with_ML_Models) as the upper limit of most models.
+
+The purpose of this exercise is to test those limits, while gaining a deeper understanding of the variables that influence game outcomes. Success in this area would be of interest to general hockey fans, hockey journalists and content creators, and professional team management (general managers, coaches), not to mention the sports betting community!
 
 ## Dataset
 
