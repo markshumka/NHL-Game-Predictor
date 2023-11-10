@@ -49,16 +49,27 @@ Cleaning the merged dataset largely consisted of removing columns with duplicate
 Initial EDA focused on overall average performance of teams along multiple dimensions, including wins and goals scored. I idenfied the variables with the highest positive and negative correlation with wins (not surprisingly, goals scored and goals allowed were at the top of each list). I also looked at some of the differences that were visible when filtering by the categories in the two major categorical variables: win/loss and home/away. For more information, see the [Learnings](#learnings) section below. 
 
 ### Feature Selection / Feature Engineering
-With over 100 independent variables, some of which are built from the same underlying data, it will be crucial to identify and isolate those that prove most important in predicting game outcome. This will involve gaining a deeper understanding of the different Advanced Stats in common use, their similarities and differences, and their ability to predict wins and losses. In addition, I have a number hypotheses I would like to test that would involve the creation or addition of other variables.
-- Home teams win more frequently than visiting teams, but does that vary based on length of road trip (number of games) or distance traveled? I could potentially calculate the distance between cities where teams play and include that distance as a variable. Similarly, I could count the number of consecutive away games to see if there is any change in expected outcome depending on number of away games played in a row.
-- It is widely believed that when a team has to play games on back-to-back days, their chance of winning is decreased for the second game. I could calculate the number of days since the last game and analyze whether this is truly a factor.
-- While I have chosen to focus on team stats rather than individual player stats, there is one area where I would consider an exception: goaltenders. The quality of goaltender is likely to have a very high impact on the outcome of the game, in particular whether the team played their starter or their backup. If possible, I will consider adding goaltender stats to the analysis.
-- While I do not want to aggregate individual player statistics, it may be possible to include some kind of team strength factor based on salary cap hit. Each team is limited in how much they can spend on player salaries, with the upper bound being the salary cap, but they do not need to spend to the cap. It may be that teams that spend more have better players, and therefore an advantage. In addition, if I can get salary cap data on a game-by-game basis (a big 'if'), it could help account for situations where a team's start player or players is injured and cannot play, as the salary total for that game would be lower than if the highly-paid player was playing.
-- There are some cases where I would most likely want to calculate a derived value rather than using the values that are in the dataset. For example, I have data on powerplay opportunities and powerplay goals, but I would like those consolidated into a single powerplay percentage value. The same holds for saves vs. goals against, i.e., save percentage. There may be other similar metrics that I want to derive, so I will need to plan for that.
-- While much of this data will be helpful in identifying key drivers of game outcomes, how well that can be used to predict future outcomes is unclear. Forecasting single-game performance based on an average of 10+ years of data seems optimistic. It may make sense to build time series data of the last n games to see if there are short-term trends that help predict outcomes.
+I began this effort by creating some additional variables that I was interested in. I previously outlined this interest as follows:
 
-### Modeling
-Modeling will include Logistic Regression and Machine Learning models.
+- *Home teams win more frequently than visiting teams, but does that vary based on length of road trip (number of games) or distance traveled? I could potentially calculate the distance between cities where teams play and include that distance as a variable. Similarly, I could count the number of consecutive away games to see if there is any change in expected outcome depending on number of away games played in a row.*
+
+I found a matrix showing the distance between all NHL cities, and used it to create a variable that calculate the distance traveled by team since the previous game. I ran a correlation between the variable and the likelihood of winning, and there was only a small negative relationship, i.e., as the distance traveled increased, there was a very slight downward impact on likelihood of winning. 
+
+- *It is widely believed that when a team has to play games on back-to-back days, their chance of winning is decreased for the second game. I could calculate the number of days since the last game and analyze whether this is truly a factor.*
+
+Using game dates, I created a variable calculating the number of days since the previous game for each team. I then created a second variable indicating whether the team played the day before the current game. That back-to-back variable showed a distinct impact on likelihood of winning. The winning percentage of teams playing on consecutive days drops to 45% (versus the baseline of 50% for all games).
+<img src="src/Back_to_back.png">
+
+- *There are some cases where I would most likely want to calculate a derived value rather than using the values that are in the dataset. For example, I have data on powerplay opportunities and powerplay goals, but I would like those consolidated into a single powerplay percentage value. The same holds for saves vs. goals against, i.e., save percentage. There may be other similar metrics that I want to derive, so I will need to plan for that.*
+
+I created several such variables, including powerplay percentage, penalty kill percentage, save percentage, shooting percentage, and faceoff win percentage.
+
+In addition to the above, I created several more derived features that converted raw data into comparative variables, e.g., share of shots in a game, takeaways: giveaways ratio.
+
+### Baseline Modeling
+After feature engineering, I had over 130 features. I chose ones with high correlation with wins, and low multicollinearity, and produced a first list of around 25 features for modeling.
+
+<img src="src/Initial_feature_buckets.png">
 
 ## Learnings
 This section will be updated as the project progresses, but here are some initial findings from EDA.
