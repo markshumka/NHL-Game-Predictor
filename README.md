@@ -118,3 +118,17 @@ Again not surprisingly, goals against is the highest driver of losses. Many of t
 Below are the newly-engineered variables with the highest positive and negative correlations with wins.
 <img src="src/positive_corr_new.png">
 <img src="src/negative_corr_new.png">
+
+These correlations are much lower than our first list, where the highest correlation was ~0.6 (versus ~0.1). However, this data is available prior to a game, making it useful for predictions. How useful? Well, I ran the whole set of new variables through the models again, and got the following results:
+<img src="src/Updated_accuracy.png">
+With no feature optimization and no model tuning, we have achieved test accuracy of up to 58%. Ignore the horrendous overfitting on a few of the models, this is just a dump of 100+ variables. But the logistic regression in particular looks okay. 58% may not sound great, but it’s higher than the 54% we could get from picking the home team, and it’s starting to approach the best-performing publicly-available models, which tend to be in the low 60% accuracy range. So that’s promising.
+
+#### Next Steps
+The following is a list of next steps:
+
+    Optimize pregame variables
+        Number of games to include, weighted for recency
+    Feature selection
+    Model optimization and fine tuning
+    Revisit how to measure success?
+        Overall accuracy? Profitability of betting on predictions?
