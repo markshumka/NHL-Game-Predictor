@@ -125,10 +125,9 @@ With no feature optimization and no model tuning, we have achieved test accuracy
 
 #### Next Steps
 The following is a list of next steps:
-
-    Optimize pregame variables
-        Number of games to include, weighted for recency
-    Feature selection
-    Model optimization and fine tuning
-    Revisit how to measure success?
-        Overall accuracy? Profitability of betting on predictions?
+- Optimize pregame variables
+    - Number of games to include, weighted for recency?
+- Feature selection
+- Model optimization and fine tuning
+- Revisit how to measure success
+    - Overall accuracy? Profitability of betting on predictions?
