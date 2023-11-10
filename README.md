@@ -71,24 +71,51 @@ After feature engineering, I had over 130 features. I chose ones with high corre
 
 <img src="src/Initial_feature_buckets.png">
 
+I ran the selected set of variables through multiple classification models, and achieved the following initial accuracy results:
+
+<img src="src/Initial_accuracy.png">
+
+While the 95%+ accuracy looks impressive, it is important to remember that this modeling is predicting the outcome of games based on events happening during the games it is attempting to predict. This is not very valuable, other than to identify some of the key drivers of wins.
+
+<img src="src/Key_drivers.png">
+
+### Feature Engineering Revisited
+In order to predict game outcomes, I need variables that I can know prior to a game, not just the majority of those in my dataset, which occur during the game. But I actually have a lot of such data -- I know the historical results of both teams. Based on that, I created new variables that compiled data from the prior 10 games into a single variable for each feature. 10 is an arbitrary number, I will look at other numbers, and I will also consider weighting more recent games higher than older ones. But before I do any of that, I need to understand if there is predictive value in this data? Is there a relationship between performance over the past 10 games and likelihood of winning the next game?
+
+To evaluate that, I looked at the distribution of the new variables for the team that won the current game as compared to the losing team. Below are some of those comparisons.
+
+<img src="src/Goals_dist.png">
+<img src="src/Shots_dist.png">
+<img src="src/xGoals_dist.png">
+
+The team that won the game outperformed the team that lost over the 10 game period prior to the game, meaning that we can draw conclusions for a single game based on those historical records.
+
+Based on this, I ran the entire set of variables that include information available prior to a game though the same classification models as before, and got the following results:
+
+<img src="src/Updated_accuracy.png">
+
+With no feature optimization and no model tuning, we have achieved test accuracy of up to 58%. Ignore the horrendous overfitting on a few of the models, as I said, this is just a dump of 100+ variables. But the logistic regression in particular looks okay. 58% may not sound great, but it’s higher than the 54% we could get from picking the home team, and it’s starting to approach the best-performing publicly-available models, which tend to be in the low 60% accuracy range. So that’s promising.
+
 ## Learnings
 This section will be updated as the project progresses, but here are some initial findings from EDA.
 #### Home-ice Advantage
-<img src="src/Home ice.png">
-The home team wins close to 55% of the time. Given that the upper limit of the most successful prediction models is ~62%, there is a narrow window for achieving success of this project!
+<img src="src/Home_ice_2.png">
+The home team wins over 54% of the time. Given that the upper limit of the most successful prediction models is ~62%, there is a narrow window for achieving success of this project!
 
 #### Goals
-<img src="src/Average_goals.png">
+<img src="src/Average_goals_2.png">
 On average, teams score 2.78 goals, with goals totals fairly normally distributed.
-<img src="src/Average_goals_WvsL.png">
+<img src="src/Average_goals_WvsL_2.png">
 Winning teams score 3.75 goals on average, versus 1.80 for losing teams. The average margin of victory is close to two goals.
 
-#### Correlation with Wins
+#### Initial Correlation with Wins
 <img src="src/positive_corr.png">
 Not surprisingly, goals scored appears to be the biggest driver of wins. Subsets of goals scored also appear on the list. Perhaps more interestingly, xGoals (Expected Goals) appears frequently on the list. xGoals is an advanced stat calculated based on a formula looking at the scoring chances that teams get in a game. In particular, the xGoalsPercentage, which is a ratio of xGoals to opposing team xGoals is high on the list. These are primarily offensive stats, with defensive stats not being as correlated with wins.
 <img src="src/negative_corr.png">
 Again not surprisingly, goals against is the highest driver of losses. Many of these are mirror images of the entries in the positive correlation graph, applying the same stats to the opposing team, but there are some differences. For instance, lowDangerShotsFor is an offensive category for the team we are analyzing for their likelihood of winning. It appears that if a team takes a lot of shots, but they are low danger shots, it actually decreases their chances of winning.
 
-#### Correlation heatmap
+#### Updated Correlation with Wins
 <img src="src/heatmap.png">
-Ever wonder what a correlation heatmap of 100+ variables would look like? I did...
+Below are the newly-engineered variables with the highest positive and negative correlations with wins.
+<img src="src/positive_corr_new.png">
+<img src="src/negative_corr_new.png">
