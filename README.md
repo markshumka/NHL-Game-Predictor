@@ -115,7 +115,6 @@ Not surprisingly, goals scored appears to be the biggest driver of wins. Subsets
 Again not surprisingly, goals against is the highest driver of losses. Many of these are mirror images of the entries in the positive correlation graph, applying the same stats to the opposing team, but there are some differences. For instance, lowDangerShotsFor is an offensive category for the team we are analyzing for their likelihood of winning. It appears that if a team takes a lot of shots, but they are low danger shots, it actually decreases their chances of winning.
 
 #### Updated Correlation with Wins
-<img src="src/heatmap.png">
 Below are the newly-engineered variables with the highest positive and negative correlations with wins.
 <img src="src/positive_corr_new.png">
 <img src="src/negative_corr_new.png">
