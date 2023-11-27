@@ -16,6 +16,8 @@ This project will seek to build a model to effectively predict the outcome of Na
 - [Dataset](#dataset)
 - [Roadmap](#roadmap)
 - [Learnings](#learnings)
+- [Model Performance](#performance)
+- [Next Steps](#next-steps)
 
 ## Motivation
 
@@ -96,6 +98,17 @@ Based on this, I ran the entire set of variables that include information availa
 
 With no feature optimization and no model tuning, we have achieved test accuracy of up to 58%. Ignore the horrendous overfitting on a few of the models, as I said, this is just a dump of 100+ variables. But the logistic regression in particular looks okay. 58% may not sound great, but it’s higher than the 54% we could get from picking the home team, and it’s starting to approach the best-performing publicly-available models, which tend to be in the low 60% accuracy range. So that’s promising.
 
+### Final Feature Engineering
+In the previous exercise, I concluded that I needed to build variables that aggregate past performance so that I can have inputs to a model to predict future performance. While the entire dataset included past performance data, that data was specific to the game in which it occurred. With that, I could build a very accurate model to determine the winner of a game, but only if I had the statistics from that particular game. This is not useful for predicting future outcomes.
+
+To address this, I built variables that combined the data from the prior 10 games into single pregame variables for each feature. I determined that performance over the past 10 games can be used to predict future results, but the 10 game rolling window was arbitrary, and I wanted to see if other windows would perform better. I started building models that looked at the whole season. I ended up building weighted season-to-date variables, using a linear decay model. Here is a visual representation of what that weighting would look like over an 82-game season:
+
+<img src="src/linear_decay.png">
+
+Here's a visualization of how that would apply to actual data. Specifically, this graph shows the actual goals scored by the Vancouver Canucks in the 2022-23 season, and adds a line displaying the rolling 10-game average and the weighted season-to-date average:
+
+<img src="src/weighted_goals.png">
+
 ## Learnings
 This section will be updated as the project progresses, but here are some initial findings from EDA.
 #### Home-ice Advantage
@@ -123,11 +136,51 @@ These correlations are much lower than our first list, where the highest correla
 <img src="src/Updated_accuracy.png">
 With no feature optimization and no model tuning, we have achieved test accuracy of up to 58%. Ignore the horrendous overfitting on a few of the models, this is just a dump of 100+ variables. But the logistic regression in particular looks okay. 58% may not sound great, but it’s higher than the 54% we could get from picking the home team, and it’s starting to approach the best-performing publicly-available models, which tend to be in the low 60% accuracy range. So that’s promising.
 
+## Perfomrance
+
+I evaluated the models' peformance on accuracy and log loss. The industry standard for evaluating performance of sports prediction models is not actually accuracy; instead, most are evaluated based on log loss, a measure of how close the prediction probabilities are to the actual value. The lower the value, the closer the predictions are to the actual value ([Source](https://www.dratings.com/explaining-log-loss/)). Here is an example of the performance of tracked NHL models, evaluated based on log loss:
+
+<img src="src/log_loss.png">
+
+The table below displays the best-performing model for each classifier.
+
+<img src="src/Model_performance.png>
+
+Model performance was very consistent across the different classifiers. This suggests that we are pretty much at the upper limit of accuracy with the variables that we have. The lowest log loss of any of the models (0.6691) is in line with some of the published models I reviewed, so my results were respectable.
+
+An additional, perhaps more accurate means to evaluate model performance is the return on investment one would receive by betting on the predctions that it generated. I sourced the historical moneyline odds for most of the games in my dataset, and used the predicted probabilities from my best-performing model (logistic regression) to simulate placing bets on my test set, then calculated the ROI. 
+
+My first betting strategy was to bet $100 on the team the model believes has the higher likelihood of winning each game. While this intuitively makes sense, it is something of a "dumb" strategy, because it does not take into account the odds, and how they relate to my predicted probabilities.
+
+To determine profitability, per bet profits are calculated based on the historical moneyline for each game, and combined into an overall profit. This strategy turned out to be profitable, returning $2,461. Of course, I had to bet $100 per game to make that profit, meaning a total investment of $228,000, for an ROI of ~1.1%. The graph below shows the cumulative profit over the course of the 2,280 games.
+
+<img src="src/dumb_roi.png>
+
+If the above betting strategy is "dumb", I felt sure I could come up with a smarter one. Since my model generates a specific probability of each team winning the game, rather than simply a binary favorite/underdog, I could use that to refine the betting strategy. If instead of betting on the team the model believes will win, I compared the model's predicted probabilities to the moneyling implied probabilities, and bet on the team where the predicted probability exceeds the implied probability. This strategy leverages the fact that payouts are based on the implied probabilities, so if the model believes a team has a higher probability than the implied, betting on that team should result in a higher expected value. In some cases, this strategy would mean not betting on either team, as the commission/profit built into the moneyline could push both teams' implied probabilities higher than the model's predicted probabilities.
+
+Unfortunately, this strategy proved unsuccessful. Instead of betting on all 2,280 games, I only bet on 1,799 games, so my investment was ~$48k less than the above strategy, but I actually lost $2,683, for an ROI of -1.5%. The graph below shows that this strategy was a loser almost from the very start. At one point it was down more than $10k, because clawing back most of those losses.
+
+<img src="src/not_smart_roi.png>
+
+The fundamental problem with this strategy is that it makes many bets that the model believes I will lose. While I could hope for the expected value of the bets to compensate for that, it is only likely to do so when the predictecd probabilities for both teams are fairly close. If the implied odds suggest that the underdog has only a 25% likelihood of winning the game, but my model believes they have a 27% likelihood, this strategy bets on them, even though I have little expectation that they will actually win. However if my model predicts that the underdog has a 49% chance of winning, I would not be surprised if they won the game. Unfortunately, these are the exact type of games that I wouldn't bet on at all. The odds build in the commission, so a game that the bookmaker believed had a 52%/48% favorite/underdog likelihood would actually have a calculated probability from the odds of something more like 54%/50%. Casinos do not like to offer even money on a coin flip, so they build in their profit! As a result, I skipped betting on those, instead betting on bigger underdogs who, not surprisingly, lost more frequently.
+
+My final betting strategy combined these two strategies, betting on teams that the model predicted would win, but only if the predicted probability exceeded the implied probability. This strategy bet on far fewer games, requiring an outlay of only ~$89k. It ended up returning $4,531, for an ROI of 5.1%. It required a lot of patience, though; it was mostly unprofitable through the first 1,000 games!
+
+<img src="src/smart_roi.png>
+
 #### Next Steps
-The following is a list of next steps:
-- Optimize pregame variables
-    - Number of games to include, weighted for recency?
-- Feature selection
-- Model optimization and fine tuning
-- Revisit how to measure success
-    - Overall accuracy? Profitability of betting on predictions?
+While there remain model optimization opportunities, this exercise has demonstrated that there is the possibility of predicting NHL game outcomes with some degree of accuracy. While ~60% accuracy does not feel impressive, hockey is likely the most unpredictable of the major sports. The fact that strategic betting using the predicted outcomes from my model could potentially generate an ROI of 5% is very impressive. In fact, if I could replicate that consistently, there is likely a business model that such returns could support.
+
+At a high level, such a business could include the standard details of a typical betting site, augmented with my model's  predictions, and recommendations of when to bet. It could link to the user's preferred betting site(s), earning affiliate revenue for each transaction. And if the model continues to prove successful, I could likely also charge a subscription fee for access, meaning there would be multiple possible revenue streams.
+
+Introducing **PuckPredictor**<sup>TM </sup>!
+
+<img src="src/Puck_Predictor_UI.png>
+
+# Additional Steps
+- Consider model enhancements, including
+    - Variables specific to special teams play
+    - Additional score/venue adjusted stats
+    - Enhanced goalie stats
+    - Use individual player stats to build a bottom-up model
+- Consider building a website to publish game predictions
