@@ -26,7 +26,7 @@ For anyone who wants to dive into the detailed analysis underlying this project,
 
 1. [Initial Date Upload and Exploratory Data Analysis](Notebooks/Initial_data_upload_and_EDA.ipynb)
 2. [Preprocessing, EDA, and Basic Model Creation](Notebooks/Preprocessing_EDA_basic_model_creation.ipynb)
-3. [Final Model Optimization, Evaluation, and Interpretation](Notebooks/Final%20Model%20Optimization,%20Evaluation,%20and%20Interpretation.ipynb)
+3. [Final Model Optimization, Evaluation, and Interpretation](Notebooks/Final%20Model%20Optimization%20Evaluation%20and%20Interpretation.ipynb)
 
 ## Motivation
 
