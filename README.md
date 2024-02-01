@@ -12,12 +12,21 @@ This project will seek to build a model to effectively predict the outcome of Na
 
 ## Table of Contents
 
+- [Links to Analysis](#links-to-analysis)
 - [Motivation](#motivation)
 - [Dataset](#dataset)
 - [Roadmap](#roadmap)
 - [Learnings](#learnings)
 - [Model Performance](#performance)
 - [Next Steps](#next-steps)
+
+## Links to Analysis
+
+For anyone who wants to dive into the detailed analysis underlying this project, you can use the links below to quickly access the three main Jupyter Notebooks that contain all of the steps involved, including rationale and the Python code used to extract insights from the data:
+
+1. [Initial Date Upload and Exploratory Data Analysis](Notebooks/Initial_data_upload_and_EDA.ipynb)
+2. [Preprocessing, EDA, and Basic Model Creation](Notebooks/Preprocessing_EDA_basic_model_creation.ipynb)
+3. [Final Model Optimization, Evaluation, and Interpretation](Notebooks/Final\ Model\ Optimization\,\ Evaluation\,\ and\ Interpretation.ipynb)
 
 ## Motivation
 
